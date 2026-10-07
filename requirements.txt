@@ -1,0 +1,18 @@
+# Core data
+pandas>=2.2
+numpy>=1.26
+rapidfuzz>=3.9
+
+# Notebooks / EDA
+jupyter
+matplotlib
+
+# Testing
+pytest>=8.0
+
+# Later phases (uncomment as we reach them)
+# easyocr            # Phase 3: OCR
+# opencv-python-headless
+# sentence-transformers  # semantic matching / RAG
+# fastapi
+# uvicorn

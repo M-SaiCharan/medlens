@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
+
+# Data (keep folders, not contents)
+data/raw/*
+data/processed/*
+!data/**/.gitkeep
+
+# Models / caches
+models/
+*.pt
+*.onnx
