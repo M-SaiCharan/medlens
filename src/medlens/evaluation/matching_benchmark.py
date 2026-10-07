@@ -21,44 +21,9 @@ import pandas as pd
 
 from medlens.catalog import CATALOG, ROOT
 from medlens.matching.matcher import MedicineMatcher, brand_core
+from medlens.synth import BOILERPLATE, ocr_noise, typo
 
 RESULTS = ROOT / "data" / "eval" / "matching_benchmark.json"
-
-# Common OCR confusions on printed packaging.
-OCR_CONFUSIONS = {
-    "i": "l1", "l": "i1", "o": "0", "0": "o", "s": "5", "5": "s", "b": "8", "e": "c", "c": "e",
-    "m": ["rn"], "n": "h", "g": "9", "1": "l", "t": "f", "u": "v",
-}
-BOILERPLATE = [
-    "Mfd. by: {mfr}", "Batch No. {batch}", "Exp. {mm}/{yy}", "M.R.P. Rs. {price} incl. of all taxes",
-    "Schedule H Prescription Drug", "Store below 25°C", "Keep out of reach of children",
-]
-
-
-def ocr_noise(text: str, rng: random.Random, rate: float) -> str:
-    out = []
-    for ch in text:
-        r = rng.random()
-        if r < rate and ch.lower() in OCR_CONFUSIONS:
-            out.append(rng.choice(list(OCR_CONFUSIONS[ch.lower()])))
-        elif r < rate * 1.3:
-            continue  # dropped character
-        else:
-            out.append(ch)
-    return "".join(out)
-
-
-def typo(text: str, rng: random.Random) -> str:
-    if len(text) < 4 or rng.random() < 0.5:
-        return text
-    i = rng.randrange(1, len(text) - 1)
-    op = rng.choice(["swap", "drop", "dup"])
-    if op == "swap":
-        return text[:i] + text[i + 1] + text[i] + text[i + 2 :]
-    if op == "drop":
-        return text[:i] + text[i + 1 :]
-    return text[:i] + text[i] + text[i:]
-
 
 def make_queries(row: pd.Series, rng: random.Random) -> dict[str, str]:
     core = brand_core(row["name_norm"])
@@ -81,9 +46,14 @@ def make_queries(row: pd.Series, rng: random.Random) -> dict[str, str]:
     return {"typed": typo(core, rng), "ocr": ocr_noise(core.upper(), rng, 0.12), "strip": "\n".join(lines)}
 
 
-def run(n: int = 1000, seed: int = 0) -> dict:
+def run(n: int = 1000, seed: int = 0, mode: str = "fuzzy") -> dict:
     catalog = pd.read_parquet(CATALOG).reset_index(drop=True)
-    matcher = MedicineMatcher(catalog)
+    retriever = None
+    if mode != "fuzzy":
+        from medlens.retrieval.index import BrandRetriever
+
+        retriever = BrandRetriever()
+    matcher = MedicineMatcher(catalog, retriever=retriever, mode=mode)
     rng = random.Random(seed)
     sample = catalog[~catalog["discontinued"]].sample(n, random_state=seed)
 
@@ -106,6 +76,7 @@ def run(n: int = 1000, seed: int = 0) -> dict:
     report = {
         "n": n,
         "seed": seed,
+        "mode": mode,
         "results": {
             k: {
                 "top1": round(v["top1"] / n, 4),
@@ -124,10 +95,13 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=1000)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--mode", choices=["fuzzy", "neural", "hybrid"], default="fuzzy")
     args = ap.parse_args()
-    report = run(args.n, args.seed)
-    RESULTS.write_text(json.dumps(report, indent=2))
+    report = run(args.n, args.seed, args.mode)
+    out = RESULTS.with_name(f"matching_benchmark_{args.mode}.json")
+    out.write_text(json.dumps(report, indent=2))
+    print(f"mode: {args.mode}")
     print(f"{'input':8} {'top-1':>7} {'top-5':>7} {'equiv@1':>8} {'ms/q':>6}")
     for k, v in report["results"].items():
         print(f"{k:8} {v['top1']:7.1%} {v['top5']:7.1%} {v['equiv_top1']:8.1%} {v['ms_per_query']:6.0f}")
-    print(f"Saved -> {RESULTS.relative_to(ROOT)}")
+    print(f"Saved -> {out.relative_to(ROOT)}")

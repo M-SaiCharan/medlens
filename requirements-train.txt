@@ -1,0 +1,5 @@
+# Training-only dependencies (GPU workstation). Serving needs only requirements.txt.
+# For CUDA builds of torch see https://pytorch.org/get-started/locally/
+-r requirements.txt
+torch>=2.3
+onnx>=1.16

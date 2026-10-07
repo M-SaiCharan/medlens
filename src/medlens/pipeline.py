@@ -1,4 +1,5 @@
 """MedLens facade: text/image in, medicine report out."""
+import os
 from dataclasses import asdict, dataclass, field
 from functools import cached_property
 from pathlib import Path
@@ -40,7 +41,7 @@ class MedLens:
             raise FileNotFoundError(f"{catalog_path} missing; run `python -m medlens.catalog`")
         self.catalog = pd.read_parquet(catalog_path).reset_index(drop=True)
         self._by_id = pd.Series(self.catalog.index, index=self.catalog["id"])
-        self.matcher = MedicineMatcher(self.catalog)
+        self.matcher = MedicineMatcher(self.catalog, retriever=_load_retriever(), mode=os.environ.get("MEDLENS_MATCH_MODE"))
         self.finder = GenericFinder(self.catalog)
         self.checker = InteractionChecker()
 
@@ -100,6 +101,13 @@ class MedLens:
             "unchecked_salts": unknown,
             "potential_savings": _potential_savings(meds),
         }
+
+
+def _load_retriever():
+    """Trained retriever if its files exist (see medlens.retrieval.train), else fuzzy-only matching."""
+    from medlens.retrieval.index import BrandRetriever
+
+    return BrandRetriever() if BrandRetriever.available() else None
 
 
 def _potential_savings(meds: list[MedicineReport]) -> dict:

@@ -1,22 +1,23 @@
-# Core data
+# Core engine
 pandas>=2.2
 numpy>=1.26
-rapidfuzz>=3.9
 pyarrow>=15
+rapidfuzz>=3.9
 
-# Notebooks / EDA
-jupyter
-matplotlib
+# OCR (ONNX Runtime, no torch needed)
+rapidocr_onnxruntime>=1.4
+pillow>=10
 
-# Testing
-pytest>=8.0
+# Web app
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9
 
 # Data download
 kaggle
 
-# Later phases (uncomment as we reach them)
-# easyocr            # Phase 3: OCR
-# opencv-python-headless
-# sentence-transformers  # semantic matching / RAG
-# fastapi
-# uvicorn
+# Dev
+pytest>=8.0
+httpx
+jupyter
+matplotlib

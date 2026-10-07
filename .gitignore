@@ -10,7 +10,8 @@ data/processed/*
 !data/**/.gitkeep
 
 # Models / caches
-models/
+models/*
+!models/.gitkeep
 *.pt
 *.onnx
 *.egg-info/
