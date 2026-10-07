@@ -77,13 +77,14 @@ def strip_numbers(text: str) -> str:
 class MedicineMatcher:
     """mode: "fuzzy" (brute-force rapidfuzz over the catalog), "neural" (trained
     retriever proposes candidates, rapidfuzz scores only those) or "hybrid" (union).
-    Defaults to "hybrid" when a trained retriever is passed, else "fuzzy".
+    Defaults to "neural" when a trained retriever is passed (hybrid benchmarked within
+    ~1pt of it at 20x the latency), else "fuzzy".
     """
 
     def __init__(self, catalog: pd.DataFrame, retriever=None, mode: str | None = None):
         self.catalog = catalog.reset_index(drop=True)
         self.retriever = retriever
-        self.mode = mode or ("hybrid" if retriever is not None else "fuzzy")
+        self.mode = mode or ("neural" if retriever is not None else "fuzzy")
         if self.mode != "fuzzy" and retriever is None:
             raise ValueError(f"mode={self.mode!r} needs a retriever")
         self._names = self.catalog["name_norm"].tolist()

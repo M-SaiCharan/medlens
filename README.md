@@ -25,7 +25,13 @@ Synthetic benchmark, 300 random active medicines × 3 input types (`python -m me
 | Neural retriever (0.3M params, 5-min CPU smoke run) | typed | 96.0% | 99.7% | 96.7% | **12 ms** |
 | | OCR brand line | 79.3% | 90.0% | 83.0% | **12 ms** |
 | | full strip | 88.3% | 95.7% | **95.7%** | **65 ms** |
+| Hybrid (neural ∪ fuzzy candidates) | typed | 95.0% | 99.7% | 95.7% | 461 ms |
+| | OCR brand line | 80.7% | 91.3% | 84.0% | 538 ms |
+| | full strip | 88.7% | 97.3% | 94.3% | 1302 ms |
 | Neural retriever (full GPU run) | | *pending workstation run* | | | |
+
+Hybrid is within ~1 point of neural-only at ~20× the latency, so the app defaults to neural when a trained
+model is present (override with `MEDLENS_MATCH_MODE=fuzzy|neural|hybrid`).
 
 Retriever recall on brands **never seen in training** (5% held out) matches seen brands, so it learned OCR
 noise, not the catalog.
@@ -57,7 +63,7 @@ python -m medlens.catalog            # builds data/processed/medicines.parquet
 uvicorn app.main:app --reload        # http://127.0.0.1:8000
 pytest -q
 ```
-Without a trained model the app uses the fuzzy matcher; drop `models/retriever/` in to switch to hybrid.
+Without a trained model the app uses the fuzzy matcher; drop `models/retriever/` in to switch to the neural matcher.
 
 ## Train the retriever (GPU workstation)
 ```bash
