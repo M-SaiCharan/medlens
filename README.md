@@ -67,7 +67,7 @@ Without a trained model the app uses the fuzzy matcher; drop `models/retriever/`
 
 ## Train the retriever (GPU workstation)
 ```bash
-git clone <repo> && cd medlens
+git clone https://github.com/M-SaiCharan/medlens.git && cd medlens
 python3 -m venv .venv && source .venv/bin/activate
 pip install torch --index-url https://download.pytorch.org/whl/cu124   # CUDA build
 pip install -r requirements-train.txt && pip install -e .
