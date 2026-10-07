@@ -22,9 +22,9 @@ Synthetic benchmark, 300 random active medicines × 3 input types (`python -m me
 | Fuzzy baseline (hand-tuned) | typed | 93.0% | 98.7% | 94.7% | 350 ms |
 | | OCR brand line | 77.7% | 89.3% | 82.0% | 354 ms |
 | | full strip | 84.0% | 95.7% | 91.7% | 924 ms |
-| Neural retriever (0.3M params, 5-min CPU smoke run) | typed | 96.0% | 99.7% | 96.7% | **12 ms** |
-| | OCR brand line | 79.3% | 90.0% | 83.0% | **12 ms** |
-| | full strip | 88.3% | 95.7% | **95.7%** | **65 ms** |
+| Neural retriever (0.3M params, 5-min CPU smoke run) | typed | 95.7% | 99.7% | 96.3% | **18 ms** |
+| | OCR brand line | 78.3% | 90.0% | 82.0% | **16 ms** |
+| | full strip | 88.7% | 96.0% | **95.7%** | **96 ms** |
 | Hybrid (neural ∪ fuzzy candidates) | typed | 95.0% | 99.7% | 95.7% | 461 ms |
 | | OCR brand line | 80.7% | 91.3% | 84.0% | 538 ms |
 | | full strip | 88.7% | 97.3% | 94.3% | 1302 ms |

@@ -169,8 +169,9 @@ class MedicineMatcher:
 
     def _neural_candidates(self, lines: list[str], pool: int) -> dict[int, float]:
         """Trained retriever proposes brands; blend its similarity with pairwise fuzzy scores."""
-        sims = self.retriever.search(lines, k=pool)
         alpha_lines = [strip_numbers(line) for line in lines]
+        # Also query strength-free lines: "nise 100" must reach the brand "Nise Tablet".
+        sims = self.retriever.search(list(dict.fromkeys(lines + [a for a in alpha_lines if len(a) >= 3])), k=pool)
         out = {}
         for core, sim in sims.items():
             for idx in self._rows_by_core.get(core, ()):

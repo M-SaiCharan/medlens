@@ -4,22 +4,22 @@
   "mode": "neural",
   "results": {
     "typed": {
-      "top1": 0.96,
+      "top1": 0.9567,
       "top5": 0.9967,
-      "equiv_top1": 0.9667,
-      "ms_per_query": 11.7
+      "equiv_top1": 0.9633,
+      "ms_per_query": 17.6
     },
     "ocr": {
-      "top1": 0.7933,
+      "top1": 0.7833,
       "top5": 0.9,
-      "equiv_top1": 0.83,
-      "ms_per_query": 12.1
+      "equiv_top1": 0.82,
+      "ms_per_query": 16.5
     },
     "strip": {
-      "top1": 0.8833,
-      "top5": 0.9567,
+      "top1": 0.8867,
+      "top5": 0.96,
       "equiv_top1": 0.9567,
-      "ms_per_query": 65.3
+      "ms_per_query": 95.5
     }
   },
   "failure_examples": [
@@ -80,7 +80,7 @@
       "got": [
         "Eyechlor H Eye Ointment",
         "CTD-M 6.25/50 Tablet ER",
-        "Hylowell Eye Drop"
+        "Hylo Grev Eye Drop"
       ]
     },
     {
@@ -168,9 +168,9 @@
       "expected": "Zymout Tablet",
       "query": "MOUT\nBromelain an Trypsin Ta8lets IP\nKeep out of reach of children\nEac tablet contaihs: Bromelai 90mg Trypsin 4mg\nM.R.P. Rs. 150.0 incl. of all taxes\nBatch No. 66834",
       "got": [
+        "StayHappi Trypsin+Bromelain+Rutoside+Diclofenac 48mg/90mg/100mg/50mg Tablet",
         "Rutonum Tablet",
-        "StayHappi Bromelain+Trypsin+Rutoside 90mg/48mg/100mg Tablet",
-        "Out Tablet"
+        "StayHappi Bromelain+Trypsin+Rutoside 90mg/48mg/100mg Tablet"
       ]
     },
     {
@@ -180,7 +180,7 @@
       "got": [
         "Flurizone-DM Tablet",
         "Emidon 10mg Tablet DT",
-        "Zycet LM 5mg/10mg Tablet"
+        "Cetloc 5mg/10mg Tablet"
       ]
     },
     {
@@ -188,9 +188,9 @@
       "expected": "Nodiril 40mg Tablet",
       "query": "NODRIL 0MG",
       "got": [
+        "Neodril Syrup",
         "Domril 10mg Tablet DT",
-        "Modi 10mg Injection",
-        "Dinor 100mg Tablet"
+        "Rhinodil Syrup"
       ]
     },
     {
@@ -270,7 +270,7 @@
       "got": [
         "Ofloxina OZ Syrup",
         "Solxacin-O Syrup",
-        "Oflolin-MZ Oral Suspension"
+        "Bioflo MZ Oral Suspension"
       ]
     },
     {
