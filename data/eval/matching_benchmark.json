@@ -1,0 +1,326 @@
+{
+  "n": 300,
+  "seed": 0,
+  "results": {
+    "typed": {
+      "top1": 0.93,
+      "top5": 0.9867,
+      "equiv_top1": 0.9467,
+      "ms_per_query": 349.7
+    },
+    "ocr": {
+      "top1": 0.7767,
+      "top5": 0.8933,
+      "equiv_top1": 0.82,
+      "ms_per_query": 354.4
+    },
+    "strip": {
+      "top1": 0.84,
+      "top5": 0.96,
+      "equiv_top1": 0.9167,
+      "ms_per_query": 721.6
+    }
+  },
+  "failure_examples": [
+    {
+      "kind": "ocr",
+      "expected": "Orsimox CV 500mg/125mg Tablet",
+      "query": "ORSrnOX V 50oMG 125MG",
+      "got": [
+        "Zanoflox OZ 50mg/125mg Suspension",
+        "Starmoto 50mg/125mg Oral Suspension",
+        "Gravflox OZ 50mg/125mg Suspension"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Orsimox CV 500mg/125mg Tablet",
+      "query": "Exp. 6/25\nM.R.P. Rs. 202.0 incl. of all taxes\nStore below 25\u00b0C\ncaeh tablet contains: Amoxycillin 5o0mg Clavulanic Acid 12smg\nAmoxycillin and elavulanic Acid Tablets 1P\nORSIM0X e500MG 125MG",
+      "got": [
+        "Orvimox CV LB 500mg/125mg Tablet",
+        "Vrimox Clav 500mg/125mg Tablet",
+        "Snovimox CV 500mg/125mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Domkid Drop",
+      "query": "DOrnID",
+      "got": [
+        "Orniden Infusion",
+        "Ornida 500mg Tablet",
+        "Kornid 500mg Injection"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Fizacort 6mg Tablet",
+      "query": "FlZACORT G",
+      "got": [
+        "Flozacort 6mg Tablet",
+        "Flazacort 6mg Tablet",
+        "Flacort 6mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Octarab D 30mg/20mg Capsule",
+      "query": "OeTA D30MG20MG",
+      "got": [
+        "Robet D 30mg/20mg Capsule SR",
+        "Zolset D 30mg/20mg Capsule PR",
+        "Retac D 30mg/20mg Capsule SR"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Nimiron 100 mg/500 mg Tablet",
+      "query": "N1MlRN 100 MG s00 M",
+      "got": [
+        "Largyl N 100 mg/100 mg Suspension",
+        "Front M 100 mg/100 mg Syrup",
+        "Donagyl 100 mg/100 mg Tablet"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Lutogest SR 200 Tablet",
+      "query": "LvTOGEST20\nMfd. by: Zealina Life Sciences\nSchedule H Prescription Drug\nProgesteone (hatural Micr0nized) Tablets IP\nEachtablef contaihs: Proge5teronc (Natura1 Micronized)200mg\nM.R.P. Rs. 339.0 incl. of all taxes",
+      "got": [
+        "Ogest 200 Soft Gelatin Capsule",
+        "Volgest 200mg Soft Gelatin Capsule",
+        "Ultigest 200mg Injection"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Azinext 200mg/5ml Syrup",
+      "query": "ZINEX 200rnG 5ML",
+      "got": [
+        "Azinix 200mg/5ml Suspension",
+        "Azinew 200mg/5ml Suspension",
+        "Ziox 200mg/5ml Suspension"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Lesite 5mg Tablet",
+      "query": "Store below 25\u00b0C\nESIfE 5M9\nLevocetirizine Tablets IP\nSchedule H Prescription Drug\nBatch No. 19398\nEach tablef c0ntains: 1evocetirizinc 5rng",
+      "got": [
+        "StayHappi Levocetirizine 5mg Tablet",
+        "DavaIndia Levocetirizine 5mg Tablet",
+        "Levo-Trizine Tablet"
+      ]
+    },
+    {
+      "kind": "typed",
+      "expected": "Ara Eye Drop",
+      "query": "ara",
+      "got": [
+        "Opara Tablet",
+        "Cfara Injection",
+        "Ara 100mg/500mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Ara Eye Drop",
+      "query": "ARA",
+      "got": [
+        "Opara Tablet",
+        "Cfara Injection",
+        "Ara 100mg/500mg Tablet"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Ara Eye Drop",
+      "query": "Each eye contains: Hydroxyproylmethylcelulose 0.3% w/v Glycerin 0.2% /v\nM.R.P. Rs. 265.0 incl. of all taxes\nBatch No. 15852\nMfd. by: Sunways India Pvt Ltd\nHyroxypopylmefhylcellulosc ahd Glycerin Ees IP\n",
+      "got": [
+        "XL 200mg/500mg Tablet",
+        "XL 80 4 mg/10 mg Tablet",
+        "XL 90 Syrup"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Infepod 200mg Syrup",
+      "query": "INFEP0 200MG",
+      "got": [
+        "Mifepro 200mg Tablet",
+        "Lifepod 200mg Tablet",
+        "Infexol 200mg Tablet DT"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Flupena 400mg Tablet",
+      "query": "FLUPEN 40oMG",
+      "got": [
+        "Lupenox 40mg Injection",
+        "Febupen 40mg Tablet",
+        "Fupan 40mg Injection"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Azithroforce 500mg Tablet",
+      "query": "Each tablet contains: Azithromycin 500mg\nKeep out of reach of children\nZITHR0FORCE 500M9\nM.R.P. Rs. 71.33 incl. of all taxes\nBatch No. 93203\nAzithromycin Tablcts IP",
+      "got": [
+        "Zithromycin 500mg Tablet",
+        "Vzithromycin 500mg Tablet",
+        "Zitromycin 500mg Tablet"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Orcetrix 250mg Injection",
+      "query": "Exp. 10/28\nEaeh ijction contains:Ceftriaxonc 250mg\nKeep out of reach of children\nOReETRIX2soMG\nSchedule H Prescription Drug\nCeftriaxone Injecfions IP",
+      "got": [
+        "Ceftaxon 250mg Injection",
+        "XL 80 4 mg/10 mg Tablet",
+        "Emtriaxone 250mg Injection"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Dazdolac 400mg Tablet",
+      "query": "Schedule H Prescription Drug\nDAOLAe 400MG\nM.R.P. Rs. 149.0 incl. of all taxes\nEach tablet contains Etoolac 400mg\nMfd. by: Novalab Healthcare Pvt Ltd\nEtodolac Tablets IP",
+      "got": [
+        "Etulac 400mg Tablet ER",
+        "Betadolac 400mg Tablet ER",
+        "Etodroc 400mg Tablet"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Cortinom 6 Tablet",
+      "query": "CORfINOM6\nKeep out of reach of children\nDeflazacort Tablets IP\nBatch No. 58548\nSchedule H Prescription Drug\nEach ta8letcotains: Deflazacort6mg",
+      "got": [
+        "Deflacort Oral Suspension",
+        "Deflazacorn 6mg Tablet",
+        "Flazacort 6mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Aprezo 30mg Tablet",
+      "query": "ARZ0 0MG",
+      "got": [
+        "Arz 20mg Tablet",
+        "Varzo 6mg Tablet",
+        "ARZ 100mg Oral Suspension"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Sanceft-SB 250mg/125mg Injection",
+      "query": "SAheEFT SB 250M9 l25MG",
+      "got": [
+        "Varnceft SB 250mg/125mg Injection",
+        "Theracef SB 250mg/125mg Injection",
+        "Touchcef SB 250mg/125mg Injection"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Tyzine D 5mg/10mg Tablet",
+      "query": "Flunarizine and Domperidone Tblets IP\nM.R.P. Rs. 47.0 incl. of all taxes\nBatch No. 43906\nStore below 25\u00b0C\nTYZlc 5MG1MG\nEach tablet contains:Flunarizihe 5mg Domeridone 10mg",
+      "got": [
+        "Unarzine 10mg Tablet",
+        "Narizine 10mg Tablet",
+        "Lunazine 10mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Fucim 250mg Tablet",
+      "query": "FUIM50MG",
+      "got": [
+        "Fimi 50mg Dry Syrup",
+        "Arcefim 50mg Dry Syrup",
+        "Fenim 50mg Oral Suspension"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Rapicef 200mg Tablet DT",
+      "query": "RPlE 200M9",
+      "got": [
+        "Rapex 200mg Tablet",
+        "Peale 200mg Tablet SR",
+        "Ample 200mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Azifeel 500mg Tablet",
+      "query": "AZIEL 500rnG",
+      "got": [
+        "Azirel 500mg Tablet",
+        "Azicel 500mg Injection",
+        "Aziwel 500mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Glimeto 500 SR Tablet",
+      "query": "GL1EfO500",
+      "got": [
+        "Lefo 500mg Tablet",
+        "Glevo 500 Tablet",
+        "Lefoq 500mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Mika 500mg Injection",
+      "query": "IK 500MG",
+      "got": [
+        "ZIK 500mg Tablet",
+        "Mik 500mg Injection",
+        "Ink 500mg Injection"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Zextine Tablet",
+      "query": "ZcXflN",
+      "got": [
+        "Zocxafen Tablet",
+        "Oxflin Ear Drop",
+        "Zocxafen 250mg/50mg/325mg Tablet"
+      ]
+    },
+    {
+      "kind": "strip",
+      "expected": "Zextine Tablet",
+      "query": "EXTIhE\nParoxefine Tablet5 lP\nKeep out of reach of children\nEach talet contains: Paroxetine 12.5mg\nExp. 7/27\nSchedule H Prescription Drug",
+      "got": [
+        "Arotine 12.5mg Tablet CR",
+        "Poluxetine 12.5mg Tablet PR",
+        "Rapotine 12.5mg Tablet"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Dia-MZ Syrup",
+      "query": "IMZ",
+      "got": [
+        "Timzy Eye Drop",
+        "Nimzip Tablet",
+        "Nimz 100mg Tablet DT"
+      ]
+    },
+    {
+      "kind": "ocr",
+      "expected": "Flucotec 150mg Tablet",
+      "query": "FLUCOE l50MG",
+      "got": [
+        "Flucole 50mg Tablet",
+        "Flucom 50mg Capsule",
+        "Flucet 50mg Tablet"
+      ]
+    }
+  ]
+}

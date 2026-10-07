@@ -1,6 +1,16 @@
 # Roadmap
 
-Built CPU-first (no local GPU); heavy training, if any, goes to Colab / Kaggle.
+## Compute
+- **Dev laptop:** CPU only — data work, matching, API, UI.
+- **Lab workstation:** Intel Xeon, 64 GB RAM, NVIDIA RTX 2000 Ada (16 GB VRAM) — OCR fine-tuning,
+  embedding models, small LLM fine-tunes (LoRA/QLoRA up to ~7–8B), batch evaluation.
+
+## Data sources
+| Source | What | How |
+|---|---|---|
+| Kaggle `shudhanshusingh/az-medicine-dataset-of-india` | ~250k brands, salts, prices (Nov 2022) | `scripts/download_data.py medicines` |
+| DDInter | ~160k drug pairs with severity | `scripts/download_data.py ddinter` |
+| Jan Aushadhi (PMBI) | ~2,400 generic products + MRP | TBD (official site / PDF) |
 
 ## Phase 1 — Data foundation
 - [ ] Collect Indian medicine dataset (name, manufacturer, salt composition, price, pack size)

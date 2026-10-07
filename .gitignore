@@ -13,3 +13,4 @@ data/processed/*
 models/
 *.pt
 *.onnx
+*.egg-info/

@@ -2,6 +2,7 @@
 pandas>=2.2
 numpy>=1.26
 rapidfuzz>=3.9
+pyarrow>=15
 
 # Notebooks / EDA
 jupyter
@@ -9,6 +10,9 @@ matplotlib
 
 # Testing
 pytest>=8.0
+
+# Data download
+kaggle
 
 # Later phases (uncomment as we reach them)
 # easyocr            # Phase 3: OCR
