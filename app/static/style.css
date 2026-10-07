@@ -1,0 +1,54 @@
+:root {
+  --bg: #f5f7fa; --surface: #ffffff; --text: #18202b; --muted: #5d6b7c; --border: #dde3ea;
+  --accent: #0f766e; --accent-ink: #ffffff; --good: #15803d; --good-bg: #e8f6ed;
+  --major: #b91c1c; --major-bg: #fdecec; --moderate: #b45309; --moderate-bg: #fdf3e3;
+  --minor: #1d4ed8; --minor-bg: #e9effd; --unknown: #4b5563; --unknown-bg: #eef0f3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1419; --surface: #182029; --text: #e6ebf0; --muted: #98a6b5; --border: #2a3542;
+    --accent: #2dd4bf; --accent-ink: #062a27; --good: #4ade80; --good-bg: #12301f;
+    --major: #f87171; --major-bg: #3a1717; --moderate: #fbbf24; --moderate-bg: #3a2a10;
+    --minor: #93c5fd; --minor-bg: #172a47; --unknown: #cbd5e1; --unknown-bg: #232c37;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+.top { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 0 14px; margin-bottom: 20px; }
+h1 { margin: 0; font-size: 1.6rem; }
+h2 { margin: 0; font-size: 1.15rem; }
+h3 { margin: 0 0 4px; font-size: 1.05rem; }
+.tag, .muted { color: var(--muted); margin: 4px 0 0; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+.search { display: flex; gap: 8px; }
+input[type=search] { flex: 1; min-width: 0; padding: 10px 12px; font-size: 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
+button, .scan-btn { padding: 10px 14px; font-size: 0.95rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+button.primary, .search button { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.scan-btn { display: block; text-align: center; margin-top: 10px; border-style: dashed; }
+.status { color: var(--muted); min-height: 1.5em; margin-top: 8px; font-size: 0.9rem; }
+.ocr pre { white-space: pre-wrap; font-size: 0.8rem; color: var(--muted); margin: 6px 0 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+.matches li, .mine li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+.matches li:first-child, .mine li:first-child { border-top: 0; }
+.meta { color: var(--muted); font-size: 0.85rem; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.savings { background: var(--good-bg); color: var(--good); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+.savings strong { font-size: 1.5rem; display: block; }
+.ix { border-radius: 10px; padding: 12px; margin-top: 10px; border-left: 4px solid; }
+.ix.Major { background: var(--major-bg); border-color: var(--major); }
+.ix.Moderate { background: var(--moderate-bg); border-color: var(--moderate); }
+.ix.Minor { background: var(--minor-bg); border-color: var(--minor); }
+.ix.Unknown { background: var(--unknown-bg); border-color: var(--unknown); }
+.sev { font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.ix.Major .sev { color: var(--major); } .ix.Moderate .sev { color: var(--moderate); }
+.ix.Minor .sev { color: var(--minor); } .ix.Unknown .sev { color: var(--unknown); }
+.warn { background: var(--moderate-bg); border-radius: 10px; padding: 12px; margin-top: 10px; font-size: 0.9rem; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 8px; }
+th, td { text-align: left; padding: 6px 8px; border-top: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 600; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.pct { color: var(--good); font-weight: 600; }
+.foot { color: var(--muted); font-size: 0.8rem; padding-bottom: 32px; }

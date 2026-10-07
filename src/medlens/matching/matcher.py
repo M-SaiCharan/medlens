@@ -93,6 +93,9 @@ class MedicineMatcher:
 
     def match(self, text: str, limit: int = 5, pool: int = 30) -> list[Match]:
         lines = [self._clean(line) for line in text.splitlines()]
+        lines = [line for line in lines if line]
+        # OCR often splits a brand across lines ("augmentin 625d" / "duo"): also try adjacent pairs.
+        lines += [f"{a} {b}" for a, b in zip(lines, lines[1:]) if len(a) + len(b) <= 40]
         lines = [line for line in lines if len(line) >= 3]
         lines = list(dict.fromkeys(lines + [deconfuse(line) for line in lines]))
         if not lines:

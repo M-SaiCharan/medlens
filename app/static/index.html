@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MedLens</title>
+<meta name="description" content="Scan a medicine, find cheaper equivalents, check dangerous combinations.">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <h1>💊 MedLens</h1>
+    <p class="tag">Scan a medicine. Find the same medicine for less. Catch dangerous combinations.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <form id="search-form" class="search" autocomplete="off">
+      <input id="q" type="search" placeholder="Type a medicine name, e.g. Dolo 650" aria-label="Medicine name" minlength="2" required>
+      <button type="submit">Search</button>
+    </form>
+    <label class="scan-btn">
+      📷 Scan strip / box photo
+      <input id="photo" type="file" accept="image/*" capture="environment" hidden>
+    </label>
+    <div id="status" class="status" role="status"></div>
+    <details id="ocr-box" class="ocr" hidden><summary>Text read from photo</summary><pre id="ocr-text"></pre></details>
+    <ul id="matches" class="matches"></ul>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <h2>My medicines</h2>
+      <button id="check" class="primary" disabled>Check savings &amp; interactions</button>
+    </div>
+    <ul id="mine" class="mine"><li class="muted">Add the medicines you take to check them together.</li></ul>
+  </section>
+
+  <section id="report"></section>
+</main>
+
+<footer class="wrap foot">
+  MedLens is informational, not medical advice. Always ask your doctor or pharmacist before switching or combining medicines.
+  Prices: public dataset (Nov 2022). Interactions: DDInter.
+</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

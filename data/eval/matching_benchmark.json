@@ -6,19 +6,19 @@
       "top1": 0.93,
       "top5": 0.9867,
       "equiv_top1": 0.9467,
-      "ms_per_query": 349.7
+      "ms_per_query": 355.1
     },
     "ocr": {
       "top1": 0.7767,
       "top5": 0.8933,
       "equiv_top1": 0.82,
-      "ms_per_query": 354.4
+      "ms_per_query": 360.4
     },
     "strip": {
       "top1": 0.84,
-      "top5": 0.96,
+      "top5": 0.9567,
       "equiv_top1": 0.9167,
-      "ms_per_query": 721.6
+      "ms_per_query": 924.0
     }
   },
   "failure_examples": [
@@ -153,6 +153,16 @@
       ]
     },
     {
+      "kind": "strip",
+      "expected": "Gyve AP Tablet",
+      "query": "Each tablet contains Aeeclofenac100mg Paracetamol 35mg\nGEAP\nExp. 2/25\nAceclofenc and Paraccfaol Tablets IP\nSchedule H Prescription Drug\nM.R.P. Rs. 85.0 incl. of all taxes",
+      "got": [
+        "PR 500mg Tablet",
+        "Genericart Aceclofenac+Paracetamol 100mg/325mg Tablet",
+        "StayHappi Aceclofenac+Paracetamol/Acetaminophen 100mg/325mg Tablet"
+      ]
+    },
+    {
       "kind": "ocr",
       "expected": "Flupena 400mg Tablet",
       "query": "FLUPEN 40oMG",
@@ -179,7 +189,7 @@
       "got": [
         "Ceftaxon 250mg Injection",
         "XL 80 4 mg/10 mg Tablet",
-        "Emtriaxone 250mg Injection"
+        "Onetrix 250mg Injection"
       ]
     },
     {
@@ -310,16 +320,6 @@
         "Timzy Eye Drop",
         "Nimzip Tablet",
         "Nimz 100mg Tablet DT"
-      ]
-    },
-    {
-      "kind": "ocr",
-      "expected": "Flucotec 150mg Tablet",
-      "query": "FLUCOE l50MG",
-      "got": [
-        "Flucole 50mg Tablet",
-        "Flucom 50mg Capsule",
-        "Flucet 50mg Tablet"
       ]
     }
   ]
